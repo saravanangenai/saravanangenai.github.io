@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saravanan | Senior Software Architect</title>
+  <meta name="description" content="Saravanan, Senior Software Architect specializing in .NET, enterprise system design and Generative AI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-alt: #111831;
+      --card: #151d3a;
+      --border: #24305a;
+      --text: #e6e9f5;
+      --muted: #9aa3c7;
+      --accent: #5eead4;
+      --accent-2: #818cf8;
+      --radius: 14px;
+      --max: 1080px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .mono { font-family: "JetBrains Mono", monospace; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(11, 16, 32, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-weight: 700; color: var(--text); font-size: 1.1rem; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: 0.95rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* Hero */
+    .hero { padding: 110px 0 90px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; inset: -40% -10% auto auto;
+      width: 620px; height: 620px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(129,140,248,0.25), transparent 65%);
+      pointer-events: none;
+    }
+    .eyebrow { color: var(--accent); font-size: 0.95rem; margin-bottom: 14px; }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; }
+    .hero h1 .grad {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero p.lead { color: var(--muted); font-size: 1.2rem; max-width: 640px; margin: 22px 0 34px; }
+    .btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+      border: 1px solid var(--border); color: var(--text); transition: all .2s;
+    }
+    .btn:hover { text-decoration: none; border-color: var(--accent); transform: translateY(-2px); }
+    .btn.primary { background: var(--accent); color: #062a26; border-color: var(--accent); }
+    .btn.primary:hover { filter: brightness(1.08); }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    section.alt { background: var(--bg-alt); }
+    .section-title { font-size: 1.9rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .section-title .num { color: var(--accent); font-family: "JetBrains Mono", monospace; font-size: 1.1rem; margin-right: 10px; }
+    .section-sub { color: var(--muted); margin-bottom: 40px; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; align-items: start; }
+    .about-grid p { color: var(--muted); margin-bottom: 16px; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
+    .stat b { display: block; font-size: 1.8rem; color: var(--accent); }
+    .stat span { color: var(--muted); font-size: 0.9rem; }
+
+    /* Skills */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; }
+    .skill-card h3 { font-size: 1.05rem; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    .skill-card h3 .ico { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; background: rgba(94,234,212,0.12); color: var(--accent); font-size: 0.9rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { font-family: "JetBrains Mono", monospace; font-size: 0.78rem; padding: 5px 10px; border-radius: 6px; background: rgba(129,140,248,0.12); color: #c7cbff; border: 1px solid rgba(129,140,248,0.25); }
+
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+    .project { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; transition: all .2s; }
+    .project:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .project .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; color: var(--accent); }
+    .project h3 { font-size: 1.15rem; margin-bottom: 10px; }
+    .project p { color: var(--muted); font-size: 0.95rem; flex: 1; margin-bottom: 18px; }
+    .project .tags { margin-top: auto; }
+
+    /* Experience */
+    .timeline { position: relative; padding-left: 28px; border-left: 2px solid var(--border); }
+    .job { position: relative; margin-bottom: 40px; }
+    .job::before { content: ""; position: absolute; left: -36px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--bg-alt); }
+    .job .when { font-family: "JetBrains Mono", monospace; color: var(--accent); font-size: 0.85rem; }
+    .job h3 { font-size: 1.15rem; margin: 4px 0; }
+    .job .org { color: var(--accent-2); font-weight: 500; margin-bottom: 10px; }
+    .job ul { color: var(--muted); padding-left: 18px; }
+    .job li { margin-bottom: 6px; }
+
+    /* Contact */
+    .contact { text-align: center; }
+    .contact p { color: var(--muted); max-width: 560px; margin: 0 auto 32px; }
+    .contact .btns { justify-content: center; }
+
+    footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; color: var(--muted); font-size: 0.88rem; }
+
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .hero { padding: 80px 0 60px; }
+      section { padding: 60px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <a href="#" class="logo">saravanan<span>.dev</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow mono">Hi, my name is</p>
+      <h1>Saravanan.<br><span class="grad">I architect enterprise systems.</span></h1>
+      <p class="lead">
+        Senior Software Architect specializing in .NET, scalable 3-tier architecture
+        and Generative AI. I design secure, maintainable platforms for financial services.
+      </p>
+      <div class="btns">
+        <a href="#projects" class="btn primary">View my work →</a>
+        <a href="https://github.com/saravanangenai" class="btn" target="_blank" rel="noopener">GitHub</a>
+        <a href="#contact" class="btn">Get in touch</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="alt">
+    <div class="container">
+      <h2 class="section-title"><span class="num">01.</span>About me</h2>
+      <p class="section-sub">A little about who I am and what I do.</p>
+      <div class="about-grid">
+        <div>
+          <p>
+            I'm a software architect who enjoys turning complex business requirements into clean,
+            well-structured systems. Most of my work is in the financial services domain, building
+            internal applications on .NET Core, C#, Dapper and SQL Server with a strong focus on
+            separation of concerns, security and long-term maintainability.
+          </p>
+          <p>
+            Lately I've been exploring Generative AI: how LLMs, retrieval-augmented generation and
+            AI agents can be integrated safely into enterprise applications to automate workflows
+            and surface insights.
+          </p>
+          <p>
+            <!-- EDIT: add a personal touch, e.g. location, hobbies, what you're learning -->
+            When I'm not designing systems, I'm usually learning something new and sharing it on GitHub.
+          </p>
+        </div>
+        <div class="stats">
+          <!-- EDIT: replace with your real numbers -->
+          <div class="stat"><b>10+</b><span>Years in software</span></div>
+          <div class="stat"><b>.NET</b><span>Core specialist</span></div>
+          <div class="stat"><b>FinServ</b><span>Domain focus</span></div>
+          <div class="stat"><b>GenAI</b><span>Current focus</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title"><span class="num">02.</span>Skills &amp; tech stack</h2>
+      <p class="section-sub">Tools and technologies I work with day to day.</p>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3><span class="ico mono">&lt;/&gt;</span>Backend</h3>
+          <div class="tags">
+            <span class="tag">.NET Core 8</span><span class="tag">C#</span><span class="tag">ASP.NET Web API</span>
+            <span class="tag">REST</span><span class="tag">Dapper</span><span class="tag">AutoMapper</span>
+            <span class="tag">FluentValidation</span><span class="tag">Serilog</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3><span class="ico mono">DB</span>Data</h3>
+          <div class="tags">
+            <span class="tag">SQL Server</span><span class="tag">T-SQL</span><span class="tag">FluentMigrator</span>
+            <span class="tag">Query tuning</span><span class="tag">Data modeling</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3><span class="ico mono">UI</span>Frontend</h3>
+          <div class="tags">
+            <span class="tag">Razor Pages</span><span class="tag">JavaScript</span><span class="tag">jQuery</span>
+            <span class="tag">Kendo UI</span><span class="tag">Bootstrap</span><span class="tag">HTML/CSS</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3><span class="ico mono">AI</span>Generative AI</h3>
+          <div class="tags">
+            <span class="tag">LLMs</span><span class="tag">Prompt engineering</span><span class="tag">RAG</span>
+            <span class="tag">AI agents</span><span class="tag">Semantic Kernel</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3><span class="ico mono">▲</span>Architecture</h3>
+          <div class="tags">
+            <span class="tag">3-tier</span><span class="tag">Clean architecture</span><span class="tag">SOLID</span>
+            <span class="tag">Scalability</span><span class="tag">Security</span><span class="tag">Code review</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3><span class="ico mono">⚙</span>DevOps &amp; tools</h3>
+          <div class="tags">
+            <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">IIS</span>
+            <span class="tag">Windows Server</span><span class="tag">CI/CD</span><span class="tag">Visual Studio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="alt">
+    <div class="container">
+      <h2 class="section-title"><span class="num">03.</span>Featured projects</h2>
+      <p class="section-sub">A selection of things I've built. More on <a href="https://github.com/saravanangenai" target="_blank" rel="noopener">GitHub</a>.</p>
+      <div class="projects-grid">
+        <!-- EDIT: replace these with your real projects and repo links -->
+        <a class="project" href="https://github.com/saravanangenai" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">
+          <div class="top"><span class="mono">📁</span><span class="mono">↗</span></div>
+          <h3>Enterprise 3-tier reference app</h3>
+          <p>A reference architecture for financial services internal apps: Razor UI, REST API and SQL Server, with validation, logging, migrations and clean separation of concerns.</p>
+          <div class="tags"><span class="tag">.NET 8</span><span class="tag">Dapper</span><span class="tag">SQL Server</span></div>
+        </a>
+        <a class="project" href="https://github.com/saravanangenai" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">
+          <div class="top"><span class="mono">📁</span><span class="mono">↗</span></div>
+          <h3>GenAI document assistant</h3>
+          <p>A retrieval-augmented chatbot that answers questions over internal documents, built with an LLM API and a vector store, exposed through a .NET API.</p>
+          <div class="tags"><span class="tag">RAG</span><span class="tag">LLM</span><span class="tag">C#</span></div>
+        </a>
+        <a class="project" href="https://github.com/saravanangenai" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">
+          <div class="top"><span class="mono">📁</span><span class="mono">↗</span></div>
+          <h3>Your next project</h3>
+          <p>Describe what it does, the problem it solves and what you learned. Link it to the repo so visitors can explore the code.</p>
+          <div class="tags"><span class="tag">Tech</span><span class="tag">Stack</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <h2 class="section-title"><span class="num">04.</span>Experience</h2>
+      <p class="section-sub">Where I've worked and what I've done.</p>
+      <div class="timeline">
+        <!-- EDIT: replace with your real roles, companies and dates -->
+        <div class="job">
+          <span class="when">20XX – Present</span>
+          <h3>Senior Software Architect</h3>
+          <div class="org">Company Name · Financial Services</div>
+          <ul>
+            <li>Designed a 3-tier architecture for internal financial applications on .NET Core 8 and SQL Server.</li>
+            <li>Established standards for validation, logging, data access and database migrations.</li>
+            <li>Led architecture reviews focused on scalability, security and maintainability across multiple app servers.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <span class="when">20XX – 20XX</span>
+          <h3>Lead / Senior Developer</h3>
+          <div class="org">Company Name</div>
+          <ul>
+            <li>Built and maintained enterprise web applications using C#, ASP.NET and SQL Server.</li>
+            <li>Mentored developers and drove code quality through reviews and best practices.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="alt contact">
+    <div class="container">
+      <h2 class="section-title"><span class="num">05.</span>Get in touch</h2>
+      <p>I'm always open to discussing architecture, .NET, GenAI or new opportunities. Feel free to reach out.</p>
+      <div class="btns">
+        <!-- EDIT: put in your real email and LinkedIn URL -->
+        <a href="mailto:you@example.com" class="btn primary">Say hello ✉</a>
+        <a href="https://www.linkedin.com/in/your-profile" class="btn" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/saravanangenai" class="btn" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © <span id="yr"></span> Saravanan · Built with HTML &amp; CSS · Hosted on GitHub Pages
+    </div>
+  </footer>
+
+  <script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
+</html>
